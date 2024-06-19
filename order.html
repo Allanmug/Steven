@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Chef Steven Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Chef Steven Food Delivery</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="order.html">Order</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="order" class="section-padding">
+            <h2>Order Confirmation</h2>
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <h3>Order Summary</h3>
+                <div id="order-summary"></div>
+                
+                <button type="submit">Confirm Order</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Chef Steven Food Delivery</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
