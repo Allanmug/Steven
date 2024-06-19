@@ -36,7 +36,7 @@ nav ul li a {
 
 /* Home Page Styles */
 .banner {
-    background-image: url('https://via.placeholder.com/1200x400'); /* Replace with actual flyer image URL */
+    background-image: url('assets/images/flyer.jpg'); /* Replace with actual flyer image URL */
     background-size: cover;
     background-position: center;
     color: #ffffff;
