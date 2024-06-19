@@ -9,6 +9,7 @@ body {
 
 header {
     background-color: #FF6347; /* Tomato Red */
+    padding: 100px 20px;
     color: #ffffff;
     padding: 1em 0;
     text-align: center;
@@ -36,9 +37,11 @@ nav ul li a {
 
 /* Home Page Styles */
 .banner {
-    background-image: url('assets/images/flyer.jpg'); /* Replace with actual flyer image URL */
-    background-size: cover;
-    background-position: center;
+    background-image: url('assets/images/flyer.png'); /* Replace with actual flyer image URL */
+    background-attachment: fixed;
+    background-size: cover; /* This ensures the image covers the entire container */
+    background-repeat: no-repeat;
+    background-position: fixed;
     color: #ffffff;
     text-align: center;
     padding: 100px 20px;
@@ -46,7 +49,7 @@ nav ul li a {
 }
 
 .banner-content {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(9, 2, 2, 0.5);
     padding: 20px;
     border-radius: 10px;
 }
@@ -60,6 +63,70 @@ nav ul li a {
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.slider {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    width: calc(6 * 200px); /* Number of images * width */
+    animation: slide 10s linear infinite;
+}
+
+.slides img {
+    width: 200px; /* Same as .slider width */
+    height: 200px; /* Same as .slider height */
+    object-fit: cover;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-600px); } /* Number of images * width */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .slider {
+        width: 150px;
+        height: 150px;
+    }
+    .slides {
+        width: calc(6 * 150px); /* Number of images * width */
+    }
+    .slides img {
+        width: 150px;
+        height: 150px;
+    }
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-900px); } /* Number of images * width */
+    }
+}
+
+@media (max-width: 480px) {
+    .slider {
+        width: 100px;
+        height: 100px;
+    }
+    .slides {
+        width: calc(6 * 100px); /* Number of images * width */
+    }
+    .slides img {
+        width: 100px;
+        height: 100px;
+    }
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-600px); } /* Number of images * width */
+    }
+}
+
 
 .highlight {
     text-align: center;
@@ -183,6 +250,129 @@ footer {
     padding: 10px 0;
     position: absolute;
     width: 100%;
+}
+.chef-section {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 900px;
+    width: 90%;
+}
+
+.chef-container {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+}
+
+.chef-image-container {
+    flex: 0 0 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.chef-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.chef-image:hover {
+    transform: scale(1.05);
+}
+
+.chef-info {
+    flex: 1;
+}
+
+.chef-info h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 2em;
+}
+
+.chef-info h3 {
+    margin-top: 20px;
+    color: #555;
+    font-size: 1.5em;
+}
+
+.chef-info p, .chef-info ul {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.chef-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chef-info ul li {
+    margin-bottom: 10px;
+}
+
+.chef-info ul li strong {
+    color: #333;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-button {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.instagram {
+    background-color: #E4405F;
+}
+
+.tiktok {
+    background-color: #010101;
+}
+
+@media (max-width: 768px) {
+    .chef-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .chef-image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .chef-image {
+        width: 120px;
+        height: 120px;
+    }
 }
 
 /* Responsive Design */
