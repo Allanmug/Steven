@@ -3,13 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Food Delivery Service</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Menu - Chef Steven Food Delivery</title>
+    <link rel="stylesheet" href="styles.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Explore our diverse menu featuring exquisite dishes by Chef Steven. Order your favorite meals now.">
+    <meta name="keywords" content="menu, food delivery, Chef Steven, online order, meals, culinary, delicious food">
+    <style>
+        .cart-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            color: blue;
+        }
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgb(255, 191, 0);
+            color: rgb(16, 229, 69);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 14px;
+        }
+        .menu-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .quantity-selector {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Food Delivery Service</h1>
+        <div class="cart-container">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
+        <h1>Chef Steven Food Delivery</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,48 +56,114 @@
         <section id="menu" class="section-padding">
             <h2>Our Menu</h2>
             <div class="menu-container">
-                <div class="menu-item" data-price="10">
-                    <img src="assets/images/beef wrap.jpg" alt="Beef Wrap">
+                <div class="menu-item" data-price="25000" data-name="Beef Wrap">
+                    <img src="assets/images/beef wrap.webp" alt="Beef Wrap" loading="lazy">
                     <h3>Beef Wrap</h3>
-                    <p>UGX 25000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 25,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-1">Quantity:</label>
+                        <input type="number" id="quantity-1" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Beef Wrap to cart" onclick="addToCart('Beef Wrap', 25000, 1)">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="15">
-                    <img src="assets/images/buffet.jpg" alt="Buffet">
+                <div class="menu-item" data-price="35000" data-name="Buffet">
+                    <img src="assets/images/buffet.webp" alt="Buffet" loading="lazy">
                     <h3>Buffet</h3>
-                    <p>UGX 35000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 35,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-2">Quantity:</label>
+                        <input type="number" id="quantity-2" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Buffet to cart" onclick="addToCart('Buffet', 35000, 2)">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="12">
-                    <img src="assets/images/dadies.jpg" alt="Dadies">
+                <div class="menu-item" data-price="30000" data-name="Dadies">
+                    <img src="assets/images/dadies.webp" alt="Dadies" loading="lazy">
                     <h3>Dadies</h3>
-                    <p>UGX 30000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 30,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-3">Quantity:</label>
+                        <input type="number" id="quantity-3" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Dadies to cart" onclick="addToCart('Dadies', 30000, 3)">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="12">
-                    <img src="assets/images/fried fish.jpg" alt="Fried Fish">
+                <div class="menu-item" data-price="50000" data-name="Fried Fish">
+                    <img src="assets/images/fried fish.webp" alt="Fried Fish" loading="lazy">
                     <h3>Fried Fish</h3>
-                    <p>UGX 50000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 50,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-4">Quantity:</label>
+                        <input type="number" id="quantity-4" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Fried Fish to cart" onclick="addToCart('Fried Fish', 50000, 4)">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="12">
-                    <img src="assets/images/Garden salad.jpg" alt="Garden Salad">
+                <div class="menu-item" data-price="40000" data-name="Garden Salad">
+                    <img src="assets/images/garden salad.webp" alt="Garden Salad" loading="lazy">
                     <h3>Garden Salad</h3>
-                    <p>UGX 40000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 40,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-5">Quantity:</label>
+                        <input type="number" id="quantity-5" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Garden Salad to cart" onclick="addToCart('Garden Salad', 40000, 5)">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="12">
-                    <img src="assets/images/Pizza.jpg" alt="Pizza">
+                <div class="menu-item" data-price="35000" data-name="Pizza">
+                    <img src="assets/images/pizza.webp" alt="Pizza" loading="lazy">
                     <h3>Pizza</h3>
-                    <p>UGX 35000/=</p>
-                    <button>Add to Cart</button>
+                    <p>UGX 35,000/=</p>
+                    <div class="quantity-selector">
+                        <label for="quantity-6">Quantity:</label>
+                        <input type="number" id="quantity-6" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart" aria-label="Add Pizza to cart" onclick="addToCart('Pizza', 35000, 6)">Add to Cart</button>
                 </div>
                 <!-- Add more menu items as needed -->
             </div>
         </section>
+        <div id="order" class="confirmbttn">
+        <button class="custom-button"><a href="confirm.html">View Order</a></button>
+        </div>s
     </main>
     <footer>
-        <p>&copy; 2024 Food Delivery Service</p>
+        <p>&phone; +256781619459/ 0754832171</p>
+        <p>Banda Kyambogo</p>    
+        <p>&copy; 2024 Chef Steven Quality Foodz and Classic Snacks Ug</p>
     </footer>
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="notification-message"></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(productName, productPrice, productId) {
+            const quantityInput = document.querySelector(`#quantity-${productId}`);
+            const quantity = parseInt(quantityInput.value);
+
+            // Check if the product is already in the cart
+            const existingProduct = cart.find(item => item.name === productName);
+
+            if (existingProduct) {
+                // Update the quantity
+                existingProduct.quantity += quantity;
+            } else {
+                // Add new product to cart
+                cart.push({ name: productName, price: productPrice, quantity: quantity });
+            }
+
+            updateCartCount();
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+    </script>
 </body>
 </html>

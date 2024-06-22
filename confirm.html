@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page - Chef Steven Food Delivery</title>
+    <link rel="stylesheet" href="styles.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <style>
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            text-align: center;
+            color: #ff6f61;
+            font-family: 'Lobster', cursive;
+            margin-bottom: 20px;
+        }
+    </style>
+    <header>
+        <h1>Order Confirmation</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="order-confirmation" class="section-padding">
+            <h2>Your Order</h2>
+            <div id="cart-items"></div>
+            <p>Total Cost: UGX <span id="total-cost">0</span></p>
+        </section>
+        <section id="order" class="section-padding">
+            <button class="custom-button"><a href="order.html">Confirm Order</a></button>
+        </section>
+    </main>
+    <footer>
+        <p>&phone; +256781619459 / 0754832171</p>
+        <p>Banda Kyambogo</p>
+        <p>&copy; 2024 Chef Steven Quality Foodz and Classic Snacks Ug</p>
+    </footer>
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            let totalCost = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalCost += itemTotal;
+
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>Price: UGX ${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                    <p>Total: UGX ${itemTotal}</p>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            document.getElementById('total-cost').innerText = totalCost;
+        }
+
+        displayCartItems();
+    </script>
+</body>
+
+</html>

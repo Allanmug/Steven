@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order - Chef Steven Food Delivery</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <style>
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        main h2 {
+            text-align: center;
+            color: #ff6f61;
+            font-family: 'Lobster', cursive;
+            margin-bottom: 20px;
+        }
+    </style>
     <header>
         <h1>Chef Steven Food Delivery</h1>
         <nav>
@@ -21,29 +42,100 @@
     <main>
         <section id="order" class="section-padding">
             <h2>Order Confirmation</h2>
-            <form id="order-form">
+            <form id="order-form" onsubmit="handleOrderFormSubmit(event)">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
-                
+
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-                
+
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" required>
-                
+
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required>
-                
-                <h3>Order Summary</h3>
+
+                <h2>Order Summary</h2>
                 <div id="order-summary"></div>
-                
-                <button type="submit">Confirm Order</button>
+                <button class="custom-button" type="submit">Confirm Order</button>
             </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Chef Steven Food Delivery</p>
+        <p>&phone; +256781619459 / 0754832171</p>
+        <p>Banda Kyambogo</p>
+        <p>&copy; 2024 Chef Steven Quality Foodz and Classic Snacks Ug</p>
     </footer>
-    <script src="scripts.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            displayOrderSummary();
+        });
+
+        function displayOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderSummaryContainer = document.getElementById('order-summary');
+            let orderSummaryHtml = '';
+            let totalCost = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalCost += itemTotal;
+
+                orderSummaryHtml += `
+                    <div class="order-item">
+                        <h3>${item.name}</h3>
+                        <p>Price: UGX ${item.price}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                        <p>Total: UGX ${itemTotal}</p>
+                    </div>
+                `;
+            });
+
+            orderSummaryHtml += `<p>Total Cost: UGX ${totalCost}</p>`;
+            orderSummaryContainer.innerHTML = orderSummaryHtml;
+        }
+
+        function handleOrderFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const orderDetails = cart.map(item => {
+                return `Name: ${item.name}, Price: ${item.price}, Quantity: ${item.quantity}, Total: ${item.price * item.quantity}`;
+            }).join('\n');
+
+            const emailContent = `
+                Name: ${name}
+                Email: ${email}
+                Address: ${address}
+                Phone: ${phone}
+                Order Details:
+                ${orderDetails}
+            `;
+
+            // EmailJS configuration
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+                from_name: name,
+                to_name: 'Chef Steven',
+                message: emailContent,
+                reply_to: email,
+            }).then(() => {
+                alert('Order placed successfully!');
+                // Optionally clear the cart and form
+                localStorage.removeItem('cart');
+                document.getElementById('order-form').reset();
+            }).catch((error) => {
+                console.error('Error sending email:', error);
+            });
+        }
+    </script>
 </body>
+
 </html>
