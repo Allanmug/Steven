@@ -118,16 +118,16 @@
                     </div>
                     <button class="add-to-cart" aria-label="Add Garden Salad to cart">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="15000" data-name="Burger">
-                    <img src="assets/bugger.webp" alt="Burger" loading="lazy">
-                    <h3>Burger</h3>
+                <div class="menu-item" data-price="15000" data-name="Samosa">
+                    <img src="assets/images/samosa.webp" alt="Samosa" loading="lazy">
+                    <h3>Samosa</h3>
                     <p>UGX 15,000/=</p>
                     <div class="quantity-selector">
                         <label for="quantity-6">Quantity:</label>
                         <input type="number" id="quantity-6" name="quantity" min="1" value="1">
                     </div>
 
-                    <button class="add-to-cart" aria-label="Add Burger to cart">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Samosa to cart">Add to Cart</button>
                 </div>
             </div>
             <button class="custom-button"><a href="confirm.html">View Order</a></button>
@@ -138,7 +138,70 @@
         <p>Banda Kyambogo</p>
         <p>&copy; 2024 Chef Steven Quality Foodz and Classic Snacks Ug</p>
     </footer>
-    
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const menuItem = this.closest('.menu-item');
+                const itemName = menuItem.getAttribute('data-name');
+                const itemPrice = parseInt(menuItem.getAttribute('data-price'));
+
+                const quantityInput = menuItem.querySelector('input[name="quantity"]');
+                const quantity = parseInt(quantityInput.value);
+
+                if (quantity && quantity > 0) {
+                    const existingItem = cart.find(item => item.name === itemName);
+
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        cart.push({ name: itemName, price: itemPrice, quantity: quantity });
+                    }
+
+                    Toastify({
+                        text: `${quantity} x ${itemName} added to cart`,
+                        duration: 3000,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        className: "info",
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                    }).showToast();
+
+                    updateCartCount();
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+            });
+        });
+
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+
+        function getCartSummary() {
+            return cart.map(item => `${item.quantity} x ${item.name} (UGX ${item.price} each)`).join('\n');
+        }
+
+        function handleOrderFormSubmit(event) {
+            event.preventDefault();
+            const orderSummary = getCartSummary();
+            const customerName = document.getElementById('customer-name').value;
+            const customerAddress = document.getElementById('customer-address').value;
+
+            const orderDetails = `Order Summary:\n${orderSummary}\n\nCustomer Name: ${customerName}\nCustomer Address: ${customerAddress}`;
+            const encodedOrderDetails = encodeURIComponent(orderDetails);
+
+            const whatsappNumber = '+256754832171'; // Replace with your WhatsApp number
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedOrderDetails}`;
+
+            window.open(whatsappLink, '_blank');
+        }
+
+        updateCartCount();
+    </script>
 </body>
 
 </html>
