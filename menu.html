@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu - Chef Steven Food Delivery</title>
     <link rel="stylesheet" href="styles.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <meta name="description" content="Explore our diverse menu featuring exquisite dishes by Chef Steven. Order your favorite meals now.">
+    <!-- Include Toastify CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <meta name="description"
+        content="Explore our diverse menu featuring exquisite dishes by Chef Steven. Order your favorite meals now.">
     <meta name="keywords" content="menu, food delivery, Chef Steven, online order, meals, culinary, delicious food">
     <style>
         .cart-container {
@@ -17,6 +24,7 @@
             font-size: 50px;
             color: blue;
         }
+
         .cart-badge {
             position: absolute;
             top: 0;
@@ -27,21 +35,25 @@
             padding: 2px 6px;
             font-size: 14px;
         }
+
         .menu-item {
             position: relative;
             margin-bottom: 20px;
         }
+
         .quantity-selector {
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <div class="cart-container">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-badge" id="cart-count">0</span>
+        <div class="cart-container"><a href="confirm.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge" id="cart-count">0</span>
         </div>
+        </a>
         <h1>Chef Steven Food Delivery</h1>
         <nav>
             <ul>
@@ -64,7 +76,7 @@
                         <label for="quantity-1">Quantity:</label>
                         <input type="number" id="quantity-1" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Beef Wrap to cart" onclick="addToCart('Beef Wrap', 25000, 1)">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Beef Wrap to cart">Add to Cart</button>
                 </div>
                 <div class="menu-item" data-price="35000" data-name="Buffet">
                     <img src="assets/images/buffet.webp" alt="Buffet" loading="lazy">
@@ -74,7 +86,7 @@
                         <label for="quantity-2">Quantity:</label>
                         <input type="number" id="quantity-2" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Buffet to cart" onclick="addToCart('Buffet', 35000, 2)">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Buffet to cart">Add to Cart</button>
                 </div>
                 <div class="menu-item" data-price="30000" data-name="Dadies">
                     <img src="assets/images/dadies.webp" alt="Dadies" loading="lazy">
@@ -84,7 +96,7 @@
                         <label for="quantity-3">Quantity:</label>
                         <input type="number" id="quantity-3" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Dadies to cart" onclick="addToCart('Dadies', 30000, 3)">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Dadies to cart">Add to Cart</button>
                 </div>
                 <div class="menu-item" data-price="50000" data-name="Fried Fish">
                     <img src="assets/images/fried fish.webp" alt="Fried Fish" loading="lazy">
@@ -94,7 +106,7 @@
                         <label for="quantity-4">Quantity:</label>
                         <input type="number" id="quantity-4" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Fried Fish to cart" onclick="addToCart('Fried Fish', 50000, 4)">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Fried Fish to cart">Add to Cart</button>
                 </div>
                 <div class="menu-item" data-price="40000" data-name="Garden Salad">
                     <img src="assets/images/garden salad.webp" alt="Garden Salad" loading="lazy">
@@ -104,66 +116,92 @@
                         <label for="quantity-5">Quantity:</label>
                         <input type="number" id="quantity-5" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Garden Salad to cart" onclick="addToCart('Garden Salad', 40000, 5)">Add to Cart</button>
+                    <button class="add-to-cart" aria-label="Add Garden Salad to cart">Add to Cart</button>
                 </div>
-                <div class="menu-item" data-price="35000" data-name="Pizza">
-                    <img src="assets/images/pizza.webp" alt="Pizza" loading="lazy">
-                    <h3>Pizza</h3>
-                    <p>UGX 35,000/=</p>
+                <div class="menu-item" data-price="15000" data-name="Samosa">
+                    <img src="assets/images/samosa.webp" alt="Samosa" loading="lazy">
+                    <h3>Samosa</h3>
+                    <p>UGX 15,000/=</p>
                     <div class="quantity-selector">
                         <label for="quantity-6">Quantity:</label>
                         <input type="number" id="quantity-6" name="quantity" min="1" value="1">
                     </div>
-                    <button class="add-to-cart" aria-label="Add Pizza to cart" onclick="addToCart('Pizza', 35000, 6)">Add to Cart</button>
+
+                    <button class="add-to-cart" aria-label="Add Samosa to cart">Add to Cart</button>
                 </div>
-                <!-- Add more menu items as needed -->
             </div>
+            <button class="custom-button"><a href="confirm.html">View Order</a></button>
         </section>
-        <div id="order" class="confirmbttn">
-        <button class="custom-button"><a href="confirm.html">View Order</a></button>
-        </div>s
     </main>
     <footer>
-        <p>&phone; +256781619459/ 0754832171</p>
-        <p>Banda Kyambogo</p>    
+        <p>&phone; +256781619459 / 0754832171</p>
+        <p>Banda Kyambogo</p>
         <p>&copy; 2024 Chef Steven Quality Foodz and Classic Snacks Ug</p>
     </footer>
-    <!-- Notification Modal -->
-    <div id="notification-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id="notification-message"></p>
-        </div>
-    </div>
-
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    
     <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        function addToCart(productName, productPrice, productId) {
-            const quantityInput = document.querySelector(`#quantity-${productId}`);
-            const quantity = parseInt(quantityInput.value);
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const menuItem = this.closest('.menu-item');
+                const itemName = menuItem.getAttribute('data-name');
+                const itemPrice = parseInt(menuItem.getAttribute('data-price'));
 
-            // Check if the product is already in the cart
-            const existingProduct = cart.find(item => item.name === productName);
+                const quantityInput = menuItem.querySelector('input[name="quantity"]');
+                const quantity = parseInt(quantityInput.value);
 
-            if (existingProduct) {
-                // Update the quantity
-                existingProduct.quantity += quantity;
-            } else {
-                // Add new product to cart
-                cart.push({ name: productName, price: productPrice, quantity: quantity });
-            }
+                if (quantity && quantity > 0) {
+                    const existingItem = cart.find(item => item.name === itemName);
 
-            updateCartCount();
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        cart.push({ name: itemName, price: itemPrice, quantity: quantity });
+                    }
+
+                    Toastify({
+                        text: `${quantity} x ${itemName} added to cart`,
+                        duration: 3000,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                        className: "info",
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                    }).showToast();
+
+                    updateCartCount();
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                }
+            });
+        });
 
         function updateCartCount() {
             const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
             document.getElementById('cart-count').innerText = cartCount;
         }
+
+        function getCartSummary() {
+            return cart.map(item => `${item.quantity} x ${item.name} (UGX ${item.price} each)`).join('\n');
+        }
+
+        function handleOrderFormSubmit(event) {
+            event.preventDefault();
+            const orderSummary = getCartSummary();
+            const customerName = document.getElementById('customer-name').value;
+            const customerAddress = document.getElementById('customer-address').value;
+
+            const orderDetails = `Order Summary:\n${orderSummary}\n\nCustomer Name: ${customerName}\nCustomer Address: ${customerAddress}`;
+            const encodedOrderDetails = encodeURIComponent(orderDetails);
+
+            const whatsappNumber = '+256781619459'; // Replace with your WhatsApp number
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedOrderDetails}`;
+
+            window.open(whatsappLink, '_blank');
+        }
+
+        updateCartCount();
     </script>
 </body>
+
 </html>
