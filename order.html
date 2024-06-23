@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="styles.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
-</head>
+    <!-- Include Toastify CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-<body>
     <style>
         main {
             max-width: 800px;
@@ -28,6 +29,9 @@
             margin-bottom: 20px;
         }
     </style>
+</head>
+
+<body>
     <header>
         <h1>Chef Steven Food Delivery</h1>
         <nav>
@@ -68,74 +72,8 @@
     </footer>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            displayOrderSummary();
-        });
-
-        function displayOrderSummary() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const orderSummaryContainer = document.getElementById('order-summary');
-            let orderSummaryHtml = '';
-            let totalCost = 0;
-
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                totalCost += itemTotal;
-
-                orderSummaryHtml += `
-                    <div class="order-item">
-                        <h3>${item.name}</h3>
-                        <p>Price: UGX ${item.price}</p>
-                        <p>Quantity: ${item.quantity}</p>
-                        <p>Total: UGX ${itemTotal}</p>
-                    </div>
-                `;
-            });
-
-            orderSummaryHtml += `<p>Total Cost: UGX ${totalCost}</p>`;
-            orderSummaryContainer.innerHTML = orderSummaryHtml;
-        }
-
-        function handleOrderFormSubmit(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-            const phone = document.getElementById('phone').value;
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            const orderDetails = cart.map(item => {
-                return `Name: ${item.name}, Price: ${item.price}, Quantity: ${item.quantity}, Total: ${item.price * item.quantity}`;
-            }).join('\n');
-
-            const emailContent = `
-                Name: ${name}
-                Email: ${email}
-                Address: ${address}
-                Phone: ${phone}
-                Order Details:
-                ${orderDetails}
-            `;
-
-            // EmailJS configuration
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                from_name: name,
-                to_name: 'Chef Steven',
-                message: emailContent,
-                reply_to: email,
-            }).then(() => {
-                alert('Order placed successfully!');
-                // Optionally clear the cart and form
-                localStorage.removeItem('cart');
-                document.getElementById('order-form').reset();
-            }).catch((error) => {
-                console.error('Error sending email:', error);
-            });
-        }
-    </script>
+    
+    <script src="scripts.min.js"></script>
 </body>
 
 </html>
